@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace IcreCreamParlour.Service
 {
     public class UserService : IUserService
     {
-        private readonly IGenericRepository<UserService> _repository;
+        private readonly IGenericRepository<User> _repository;
 
-        public UserService(IGenericRepository<UserService> repository)
+        public User(IGenericRepository<User> repository)
         {
             _repository = repository;
         }
@@ -20,24 +21,24 @@ namespace IcreCreamParlour.Service
         {
             _repository.Delete(id);        }
 
-        public UserService FindById(int id)
+        public User FindById(int id)
         {
             return _repository.FindById(id);        }
 
-        public IEnumerable<UserService> GetAll()
+        public IEnumerable<User> GetAll()
         {
             return _repository.GetAll();       }
 
-        public void InsertUser(UserService user)
+        public void InsertUser(User user)
         {
             _repository.Insert(user);
         }
 
-        public void UpdateUser(UserService user)
+        public void UpdateUser(User user)
         {
             _repository.Update(user);
         }
-        public static implicit operator UserService(GenericRepository<UserService> user)
+        public static implicit operator UserService(GenericRepository<User> user)
         {
             throw new NotImplementedException();
         }

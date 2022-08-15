@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface IOrderDetailService
     {
-        IEnumerable<OrderDetailService> GetAll();
-        OrderDetailService FindById(int id);
-        void InsertOrderDetail(OrderDetailService orderDetail);
-        void UpdateOrderDetail(OrderDetailService orderDetail);
+        IEnumerable<OrderDetail> GetAll();
+        OrderDetail FindById(int id);
+        void InsertOrderDetail(OrderDetail orderDetail);
+        void UpdateOrderDetail(OrderDetail orderDetail);
         void DeleteOrderDetail(int id);
     }
 }

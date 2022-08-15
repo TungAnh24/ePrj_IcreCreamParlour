@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface IRecipeService
     {
-        IEnumerable<RecipeService> GetAll();
-        RecipeService FindById(int id);
-        void InsertRecipe(RecipeService recipe);
-        void UpdateRecipe(RecipeService recipe);
+        IEnumerable<Recipe> GetAll();
+        Recipe FindById(int id);
+        void InsertRecipe(Recipe recipe);
+        void UpdateRecipe(Recipe recipe);
         void DeleteRecipe(int id);
     }
 }

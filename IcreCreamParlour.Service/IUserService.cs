@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface IUserService
     {
-        IEnumerable<UserService> GetAll();
-        UserService FindById(int id);
-        void InsertUser(UserService user);
-        void UpdateUser(UserService user);
+        IEnumerable<User> GetAll();
+        User FindById(int id);
+        void InsertUser(User user);
+        void UpdateUser(User user);
         void DeleteUser(int id);
     }
 }

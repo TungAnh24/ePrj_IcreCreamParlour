@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace IcreCreamParlour.Service
 {
-    public class SubscriptionPaymentService : ISubscriptionPaymentService
+    public class SubscriptionPayment : ISubscriptionPaymentService
     {
-        private readonly IGenericRepository<SubscriptionPaymentService> _repository;
+        private readonly IGenericRepository<SubscriptionPayment> _repository;
 
-        public SubscriptionPaymentService(IGenericRepository<SubscriptionPaymentService> repository)
+        public SubscriptionPayment(IGenericRepository<SubscriptionPayment> repository)
         {
             _repository = repository;
         }
@@ -21,26 +22,26 @@ namespace IcreCreamParlour.Service
             _repository.Delete(id);
         }
 
-        public SubscriptionPaymentService FindById(int id)
+        public SubscriptionPayment FindById(int id)
         {
             return _repository.FindById(id);
         }
 
-        public IEnumerable<SubscriptionPaymentService> GetAll()
+        public IEnumerable<SubscriptionPayment> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public void InsertSubscriptionPayment(SubscriptionPaymentService subscriptionPayment)
+        public void InsertSubscriptionPayment(SubscriptionPayment subscriptionPayment)
         {
             _repository.Insert(subscriptionPayment);
         }
 
-        public void UpdateSubscriptionPayment(SubscriptionPaymentService subscriptionPayment)
+        public void UpdateSubscriptionPayment(SubscriptionPayment subscriptionPayment)
         {
             _repository.Update(subscriptionPayment);
         }
-        public static implicit operator SubscriptionPaymentService(GenericRepository<SubscriptionPaymentService> subscriptionPayment)
+        public static implicit operator SubscriptionPayment(GenericRepository<SubscriptionPayment> subscriptionPayment)
         {
             throw new NotImplementedException();
         }

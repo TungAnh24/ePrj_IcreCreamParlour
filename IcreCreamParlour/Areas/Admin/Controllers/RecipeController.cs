@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class BooksController : Controller
+    public class RecipeController : Controller
     {
-        private readonly IBooksService _booksService;
+        private readonly IRecipeService _recipeService;
 
-        public BooksController(IBooksService booksService)
+        public RecipeController(IRecipeService recipeService)
         {
-            _booksService = booksService;
+            _recipeService = recipeService;
         }
 
         public IActionResult Index()
         {
-            return View(_booksService.GetAll().ToList());
+            return View();
         }
         [HttpGet]
         public IActionResult Create()
@@ -28,15 +28,15 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Book book)
+        public IActionResult Create(Recipe recipe)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime dateCreate = DateTime.Now;
-                    book.CreateDate = dateCreate;
-                    _booksService.InsertBook(book);
+                    DateTime publishDate = DateTime.Now;
+                    recipe.PublistDate = publishDate;
+                    _recipeService.InsertRecipe(recipe);
                     return RedirectToAction("Index");
                 }
             }
@@ -44,23 +44,24 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(book);
+            return View(recipe);
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            return View(_booksService.FinBookById(id));
+            var getRecipeByid = _recipeService.FindById(id);
+            return View(getRecipeByid);
         }
         [HttpPost]
-        public IActionResult Edit(Book book)
+        public IActionResult Edit(Recipe recipe)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime dateCreate = DateTime.Now;
-                    book.CreateDate = dateCreate;
-                    _booksService.UpdateBook(book);
+                    DateTime publishDate = DateTime.Now;
+                    recipe.PublistDate = publishDate;
+                    _recipeService.UpdateRecipe(recipe);
                     return RedirectToAction("Index");
                 }
             }
@@ -68,11 +69,11 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(book);
+            return View(recipe);
         }
         public IActionResult Delete(int id)
         {
-            _booksService.DeleteBook(id);
+            _recipeService.DeleteRecipe(id);
             return RedirectToAction("Index");
         }
     }

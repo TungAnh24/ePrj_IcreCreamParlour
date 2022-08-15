@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface ISubscriptionPaymentService
     {
-        IEnumerable<SubscriptionPaymentService> GetAll();
-        SubscriptionPaymentService FindById(int id);
-        void InsertSubscriptionPayment(SubscriptionPaymentService subscriptionPayment);
-        void UpdateSubscriptionPayment(SubscriptionPaymentService subscriptionPayment);
+        IEnumerable<SubscriptionPayment> GetAll();
+        SubscriptionPayment FindById(int id);
+        void InsertSubscriptionPayment(SubscriptionPayment subscriptionPayment);
+        void UpdateSubscriptionPayment(SubscriptionPayment subscriptionPayment);
         void DeleteSubscriptionPayment(int id);
     }
 }

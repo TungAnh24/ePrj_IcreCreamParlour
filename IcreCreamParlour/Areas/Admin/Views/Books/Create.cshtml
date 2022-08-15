@@ -1,83 +1,124 @@
 ﻿@model IcreCreamParlour.Model.Entities.Book
-
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>Book</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+<!--<div class="card">
+    <div class="card-body">
+        <h6 class="card-title">Insert Book</h6>
+        <form class="forms-sample">
+            <div class="form-group">-->
+                @*<label for="exampleInputUsername1">Username</label>*@
+                <!--@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "form-control" })-->
+                @*<input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="Username">*@
+                <!--@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
+                @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="AdminAddId" class="control-label"></label>
-                <input asp-for="AdminAddId" class="form-control" />
-                <span asp-validation-for="AdminAddId" class="text-danger"></span>
+                @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
+                @Html.LabelFor(model => model.UpdateDate, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.UpdateDate, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-group">
-                <label asp-for="AdminUpdateId" class="control-label"></label>
-                <input asp-for="AdminUpdateId" class="form-control" />
-                <span asp-validation-for="AdminUpdateId" class="text-danger"></span>
+                @Html.LabelFor(model => model.OrderDetails, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.OrderDetails, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-            <div class="form-group">
-                <label asp-for="UpdateDate" class="control-label"></label>
-                <input asp-for="UpdateDate" class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            <div class="form-check form-check-flat form-check-primary">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Remember me
+                    <i class="input-frame"></i>
+                </label>
             </div>
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsDelete" class="control-label"></label>
-                <input asp-for="IsDelete" class="form-control" />
-                <span asp-validation-for="IsDelete" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <button class="btn btn-light">Cancel</button>
         </form>
+    </div>
+</div>-->
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Insert Book</h6>
+            <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Create">
+                <div class="form-group row">
+                    <label asp-for="Title" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Title" placeholder="Title">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Description" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Description" autocomplete="off" placeholder="Description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Image" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="file" class="icon-file" asp-for="Image">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Price" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Price" placeholder="Price">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="CreateDate" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" asp-for="CreateDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Author" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Author" placeholder="Author">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="UpdateDate" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" asp-for="UpdateDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="OrderDetails" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="OrderDetails" placeholder="OrderDetails">
+                    </div>
+                </div>
+                <div class="form-check form-check-flat form-check-primary mt-0">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        Remember me
+                        <i class="input-frame"></i>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

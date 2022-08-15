@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace IcreCreamParlour.Service
 {
     public class FeedbackService : IFeedbackService
     {
-        private readonly IGenericRepository<FeedbackService> _repository;
+        private readonly IGenericRepository<Feedback> _repository;
 
-        public FeedbackService(IGenericRepository<FeedbackService> repository)
+        public FeedbackService(IGenericRepository<Feedback> repository)
         {
             _repository = repository;
         }
@@ -21,22 +22,22 @@ namespace IcreCreamParlour.Service
             _repository.Delete(id);
         }
 
-        public FeedbackService FindById(int id)
+        public Feedback FindById(int id)
         {
             return _repository.FindById(id);
         }
 
-        public IEnumerable<FeedbackService> GetAll()
+        public IEnumerable<Feedback> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public void InsertFeedback(FeedbackService feedback)
+        public void InsertFeedback(Feedback feedback)
         {
             _repository.Insert(feedback);
         }
 
-        public void UpdateFeedback(FeedbackService feedback)
+        public void UpdateFeedback(Feedback feedback)
         {
             _repository.Update(feedback);
         }

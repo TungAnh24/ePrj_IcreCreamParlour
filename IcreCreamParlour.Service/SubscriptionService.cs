@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace IcreCreamParlour.Service
 {
     public class SubscriptionService : ISubscriptionService
     {
-        private readonly IGenericRepository<SubscriptionService> _repository;
+        private readonly IGenericRepository<Subscription> _repository;
 
-        public SubscriptionService(IGenericRepository<SubscriptionService> repository)
+        public Subscription(IGenericRepository<Subscription> repository)
         {
             _repository = repository;
         }
@@ -20,24 +21,24 @@ namespace IcreCreamParlour.Service
         {
             _repository.Delete(id);        }
 
-        public SubscriptionService FindById(int id)
+        public Subscription FindById(int id)
         {
             return _repository.FindById(id);        }
 
-        public IEnumerable<SubscriptionService> GetAll()
+        public IEnumerable<Subscription> GetAll()
         {
             return _repository.GetAll();        }
 
-        public void InsertSubscription(SubscriptionService subscription)
+        public void InsertSubscription(Subscription subscription)
         {
             _repository.Insert(subscription);
         }
 
-        public void UpdateSubscription(SubscriptionService subscription)
+        public void UpdateSubscription(Subscription subscription)
         {
             _repository.Update(subscription);
         }
-        public static implicit operator SubscriptionService(GenericRepository<SubscriptionService> subscription)
+        public static implicit operator SubscriptionService(GenericRepository<Subscription> subscription)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace IcreCreamParlour.Service
 {
     public class RecipeService : IRecipeService
     {
-        private readonly IGenericRepository<RecipeService> _repository;
+        private readonly IGenericRepository<Recipe> _repository;
 
-        public RecipeService(IGenericRepository<RecipeService> repository)
+        public RecipeService(IGenericRepository<Recipe> repository)
         {
             _repository = repository;
         }
@@ -21,20 +22,20 @@ namespace IcreCreamParlour.Service
             _repository.Delete(id);
         }
 
-        public RecipeService FindById(int id)
+        public Recipe FindById(int id)
         {
             return _repository.FindById(id);        }
 
-        public IEnumerable<RecipeService> GetAll()
+        public IEnumerable<Recipe> GetAll()
         {
             return _repository.GetAll();        }
 
-        public void InsertRecipe(RecipeService recipe)
+        public void InsertRecipe(Recipe recipe)
         {
             _repository.Insert(recipe);
         }
 
-        public void UpdateRecipe(RecipeService recipe)
+        public void UpdateRecipe(Recipe recipe)
         {
             _repository.Update(recipe);
         }

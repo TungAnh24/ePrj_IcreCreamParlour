@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface IFeedbackService
     {
-        IEnumerable<FeedbackService> GetAll();
-        FeedbackService FindById(int id);
-        void InsertFeedback(FeedbackService feedback);
-        void UpdateFeedback(FeedbackService feedback);
+        IEnumerable<Feedback> GetAll();
+        Feedback FindById(int id);
+        void InsertFeedback(Feedback feedback);
+        void UpdateFeedback(Feedback feedback);
         void DeleteFeedback(int id);
     }
 }

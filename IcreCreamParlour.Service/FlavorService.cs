@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace IcreCreamParlour.Service
 {
     public class FlavorService : IFlavorService
     {
-        private readonly IGenericRepository<FlavorService> _repository;
+        private readonly IGenericRepository<Flavor> _repository;
 
-        public FlavorService(IGenericRepository<FlavorService> repository)
+        public FlavorService(IGenericRepository<Flavor> repository)
         {
             _repository = repository;
         }
@@ -21,22 +22,22 @@ namespace IcreCreamParlour.Service
             _repository.Delete(id);
         }
 
-        public FlavorService FindById(int id)
+        public Flavor FindById(int id)
         {
             return _repository.FindById(id);
         }
 
-        public IEnumerable<FlavorService> GetAll()
+        public IEnumerable<Flavor> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public void InsertFlavor(FlavorService flavor)
+        public void InsertFlavor(Flavor flavor)
         {
             _repository.Insert(flavor);
         }
 
-        public void UpdateFlavor(FlavorService flavor)
+        public void UpdateFlavor(Flavor flavor)
         {
             _repository.Update(flavor);
         }

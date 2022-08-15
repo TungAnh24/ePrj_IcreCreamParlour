@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface IFlavorService
     {
-        IEnumerable<FlavorService> GetAll();
-        FlavorService FindById(int id);
-        void InsertFlavor(FlavorService flavor);
-        void UpdateFlavor(FlavorService flavor);
+        IEnumerable<Flavor> GetAll();
+        Flavor FindById(int id);
+        void InsertFlavor(Flavor flavor);
+        void UpdateFlavor(Flavor flavor);
         void DeleteFlavor(int id);
     }
 }

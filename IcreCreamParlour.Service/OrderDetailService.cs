@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Repository;
+﻿using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace IcreCreamParlour.Service
 {
     public class OrderDetailService : IOrderDetailService
     {
-        private readonly IGenericRepository<OrderDetailService> _repository;
+        private readonly IGenericRepository<OrderDetail> _repository;
 
-        public OrderDetailService(IGenericRepository<OrderDetailService> repository)
+        public OrderDetailService(IGenericRepository<OrderDetail> repository)
         {
             _repository = repository;
         }
@@ -21,22 +22,22 @@ namespace IcreCreamParlour.Service
             _repository.Delete(id);
         }
 
-        public OrderDetailService FindById(int id)
+        public OrderDetail FindById(int id)
         {
             return _repository.FindById(id);
         }
 
-        public IEnumerable<OrderDetailService> GetAll()
+        public IEnumerable<OrderDetail> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public void InsertOrderDetail(OrderDetailService orderDetail)
+        public void InsertOrderDetail(OrderDetail orderDetail)
         {
             _repository.Insert(orderDetail);
         }
 
-        public void UpdateOrderDetail(OrderDetailService orderDetail)
+        public void UpdateOrderDetail(OrderDetail orderDetail)
         {
             _repository.Update(orderDetail);
         }

@@ -9,10 +9,10 @@ namespace IcreCreamParlour.Service
 {
     public interface IOrderService
     {
-        IEnumerable<OrderService> GetAll();
-        OrderService FindById(int id);
-        void InsertOrder(OrderService order);
-        void UpdateOrder(OrderService order);
+        IEnumerable<Order> GetAll();
+        Order FindById(int id);
+        void InsertOrder(Order order);
+        void UpdateOrder(Order order);
         void DeleteOrder(int id);
     }
 }
