@@ -30,7 +30,16 @@ namespace IcreCreamParlour
             services.AddSession();
             services.AddRazorPages();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IBooksService, BooksService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
+            services.AddScoped<IFlavorService, FlavorService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderDetailService, OrderDetailService>();
+            services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<ISubscriptionService, SubscriptionService>();
+            services.AddScoped<ISubscriptionPaymentService, SubscriptionPaymentService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddDbContext<DbIcecreamParlourContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 

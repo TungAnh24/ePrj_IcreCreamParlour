@@ -11,6 +11,12 @@ namespace IcreCreamParlour.Service
     public class AdminService : IAdminService
     {
         private readonly IGenericRepository<Admin> _repository;
+
+        public AdminService(IGenericRepository<Admin> repository)
+        {
+            _repository = repository;
+        }
+
         public void DeleteAdmin(int id)
         {
             _repository.Delete(id);

@@ -11,6 +11,12 @@ namespace IcreCreamParlour.Service
     public class BooksService : IBooksService
     {
         private readonly IGenericRepository<Book> _repository;
+
+        public BooksService(IGenericRepository<Book> repository)
+        {
+            _repository = repository;
+        }
+
         public Book FinBookById(int id)
         {
             return _repository.FindById(id);
