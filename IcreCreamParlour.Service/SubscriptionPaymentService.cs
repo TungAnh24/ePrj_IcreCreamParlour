@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace IcreCreamParlour.Service
 {
-    public class SubscriptionPayment : ISubscriptionPaymentService
+    public class SubscriptionPaymentService : ISubscriptionPaymentService
     {
         private readonly IGenericRepository<SubscriptionPayment> _repository;
 
-        public SubscriptionPayment(IGenericRepository<SubscriptionPayment> repository)
+        public SubscriptionPaymentService(IGenericRepository<SubscriptionPayment> repository)
         {
             _repository = repository;
         }
@@ -41,7 +41,7 @@ namespace IcreCreamParlour.Service
         {
             _repository.Update(subscriptionPayment);
         }
-        public static implicit operator SubscriptionPayment(GenericRepository<SubscriptionPayment> subscriptionPayment)
+        public static implicit operator SubscriptionPaymentService(GenericRepository<SubscriptionPayment> subscriptionPayment)
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,7 @@ namespace IcreCreamParlour.Service
     {
         private readonly IGenericRepository<Subscription> _repository;
 
-        public Subscription(IGenericRepository<Subscription> repository)
+        public SubscriptionService(IGenericRepository<Subscription> repository)
         {
             _repository = repository;
         }
