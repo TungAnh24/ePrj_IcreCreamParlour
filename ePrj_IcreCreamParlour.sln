@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcreCreamParlour", "IcreCreamParlour\IcreCreamParlour.csproj", "{D2342817-3330-4610-BED3-10DC6428E6DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IcreCreamParlour", "IcreCreamParlour\IcreCreamParlour.csproj", "{D2342817-3330-4610-BED3-10DC6428E6DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcreCreamParlour.Model", "IcreCreamParlour.Model\IcreCreamParlour.Model.csproj", "{DB7EB25E-55D4-40B9-8E59-7EF270D79AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IcreCreamParlour.Model", "IcreCreamParlour.Model\IcreCreamParlour.Model.csproj", "{DB7EB25E-55D4-40B9-8E59-7EF270D79AF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcreCreamParlour.Service", "IcreCreamParlour.Service\IcreCreamParlour.Service.csproj", "{62CEF95F-6205-40AB-B0C3-F6CA3B4FF11E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IcreCreamParlour.Service", "IcreCreamParlour.Service\IcreCreamParlour.Service.csproj", "{62CEF95F-6205-40AB-B0C3-F6CA3B4FF11E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcreCreamParlour.Repository", "IcreCreamParlour.Repository\IcreCreamParlour.Repository.csproj", "{A476B40C-FA37-40B4-9C82-63F2ABA7F478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IcreCreamParlour.Repository", "IcreCreamParlour.Repository\IcreCreamParlour.Repository.csproj", "{A476B40C-FA37-40B4-9C82-63F2ABA7F478}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

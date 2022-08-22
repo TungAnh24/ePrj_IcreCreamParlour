@@ -1,5 +1,7 @@
-﻿using IcreCreamParlour.Model.Entities;
+﻿using IcreCreamParlour.Mapper;
+using IcreCreamParlour.Model.Entities;
 using IcreCreamParlour.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,15 +14,26 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
     public class BooksController : Controller
     {
         private readonly IBooksService _booksService;
+        private readonly IAdminService _adminService;
 
-        public BooksController(IBooksService booksService)
+        public BooksController(IBooksService booksService, IAdminService adminService)
         {
             _booksService = booksService;
+            _adminService = adminService;
         }
 
         public IActionResult Index()
         {
-            return View(_booksService.GetAll().ToList());
+            return View(_booksService.GetAll().ToList().Select(book =>
+            {
+                var bookDTO = book.Convert();
+                bookDTO.PersonCreate = _adminService.FindById(book.AdminAddId).Name;
+                if (bookDTO.AdminUpdateId != null)
+                {
+                    bookDTO.PersonUpdate = _adminService.FindById(book.AdminUpdateId.Value).Name;
+                }
+                return bookDTO;
+            }));
         }
         [HttpGet]
         public IActionResult Create()
@@ -34,8 +47,8 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime dateCreate = DateTime.Now;
-                    book.CreateDate = dateCreate;
+                    int AdminCreate = int.Parse(HttpContext.Session.GetString("AdminId"));
+                    book.AdminAddId = AdminCreate;
                     _booksService.InsertBook(book);
                     return RedirectToAction("Index");
                 }
@@ -58,8 +71,8 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime dateCreate = DateTime.Now;
-                    book.CreateDate = dateCreate;
+                    int AdminUpdateId = int.Parse(HttpContext.Session.GetString("AdminId"));
+                    book.AdminUpdateId = AdminUpdateId;
                     _booksService.UpdateBook(book);
                     return RedirectToAction("Index");
                 }

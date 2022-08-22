@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using IcreCreamParlour.Model.Entities
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NobleUI Responsive Bootstrap 4 Dashboard Template</title>
+    <title>@ViewData["Title"]</title>
     <!-- core:css -->
     <link href="~/assets/vendors/core/core.css" rel="stylesheet" />
     <!-- endinject -->
@@ -20,6 +22,20 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/assets/images/favicon.png" />
 </head>
+@*@{
+    Admin admin = new Admin();
+    if (Context.Session.GetString("AdminId") == null)
+    {
+        <script>window.location.href = "Admin/Home/Login";</script>
+    }
+    else
+    {
+        int AdminId = int.Parse(Context.Session.GetString("AdminId"));
+        DbIcecreamParlourContext _context = new DbIcecreamParlourContext();
+        admin = _context.Admins.SingleOrDefault(admin => admin.AdminId == AdminId);
+    }
+
+}*@
 <body>
     <div class="main-wrapper">
 
@@ -39,45 +55,31 @@
                 <ul class="nav">
                     <li class="nav-item nav-category">Main</li>
                     <li class="nav-item">
-                        <a href="dashboard-one.html" class="nav-link">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
                             <i class="link-icon" data-feather="box"></i>
                             <span class="link-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item nav-category">web apps</li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-                            <i class="link-icon" data-feather="mail"></i>
-                            <span class="link-title">Email</span>
-                            <i class="link-arrow" data-feather="chevron-down"></i>
-                        </a>
-                        <div class="collapse" id="emails">
-                            <ul class="nav sub-menu">
-                                <li class="nav-item">
-                                    <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/email/read.html" class="nav-link">Read</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/email/compose.html" class="nav-link">Compose</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pages/apps/chat.html" class="nav-link">
-                            <i class="link-icon" data-feather="message-square"></i>
-                            <span class="link-title">Chat</span>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Books" asp-action="Index">
+                            <i class="link-icon" data-feather="book"></i>
+                            <span class="link-title">Book</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/apps/calendar.html" class="nav-link">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Recipe" asp-action="Index">
+                            <i class="link-icon" data-feather="hash"></i>
+                            <span class="link-title">Recipes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Flavor" asp-action="Index">
                             <i class="link-icon" data-feather="calendar"></i>
-                            <span class="link-title">Calendar</span>
+                            <span class="link-title">Flavor</span>
                         </a>
                     </li>
-                    <li class="nav-item nav-category">Components</li>
+                    <li class="nav-item nav-category">User manager</li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
                             <i class="link-icon" data-feather="feather"></i>
@@ -261,58 +263,23 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item nav-category">Pages</li>
+                    <li class="nav-item nav-category">Admin manager</li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#general-pages" role="button" aria-expanded="false" aria-controls="general-pages">
-                            <i class="link-icon" data-feather="book"></i>
-                            <span class="link-title">Special pages</span>
-                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">
+                            <i class="link-icon" data-feather="users"></i>
+                            <span class="link-title">List of employee</span>
                         </a>
-                        <div class="collapse" id="general-pages">
-                            <ul class="nav sub-menu">
-                                <li class="nav-item">
-                                    <a href="pages/general/blank-page.html" class="nav-link">Blank page</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/general/faq.html" class="nav-link">Faq</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/general/invoice.html" class="nav-link">Invoice</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/general/profile.html" class="nav-link">Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/general/pricing.html" class="nav-link">Pricing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/general/timeline.html" class="nav-link">Timeline</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#authPages" role="button" aria-expanded="false" aria-controls="authPages">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Create">
                             <i class="link-icon" data-feather="unlock"></i>
-                            <span class="link-title">Authentication</span>
-                            <i class="link-arrow" data-feather="chevron-down"></i>
+                            <span class="link-title">Add new staff</span>
                         </a>
-                        <div class="collapse" id="authPages">
-                            <ul class="nav sub-menu">
-                                <li class="nav-item">
-                                    <a href="pages/auth/login.html" class="nav-link">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/auth/register.html" class="nav-link">Register</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#errorPages" role="button" aria-expanded="false" aria-controls="errorPages">
-                            <i class="link-icon" data-feather="cloud-off"></i>
-                            <span class="link-title">Error</span>
-                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Edit">
+                            <i class="link-icon" data-feather="user-check"></i>
+                            <span class="link-title">Edit employee information</span>
                         </a>
                         <div class="collapse" id="errorPages">
                             <ul class="nav sub-menu">
@@ -474,7 +441,7 @@
                                         </div>
                                         <div class="content">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <p>Amiah Burton</p>
+                                                @*<p>@admin.Name</p>*@
                                                 <p class="sub-text text-muted">2 hrs ago</p>
                                             </div>
                                             <p class="sub-text text-muted">Project deadline</p>
@@ -572,8 +539,8 @@
                                         <img src="https://via.placeholder.com/80x80" alt="">
                                     </div>
                                     <div class="info text-center">
-                                        <p class="name font-weight-bold mb-0">Amiah Burton</p>
-                                        <p class="email text-muted mb-3">amiahburton@gmail.com</p>
+                                        @*<p class="name font-weight-bold mb-0">@admin.Name</p>
+                                        <p class="email text-muted mb-3">@admin.Email</p>*@
                                     </div>
                                 </div>
                                 <div class="dropdown-body">
@@ -612,12 +579,6 @@
             <!-- partial -->
 
             <div class="page-content">
-                <nav class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Book</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
-                    </ol>
-                </nav>
                 @RenderBody()
             </div>
 

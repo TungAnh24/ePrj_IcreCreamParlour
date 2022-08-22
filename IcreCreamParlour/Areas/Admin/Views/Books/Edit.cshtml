@@ -9,7 +9,13 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">Insert Book</h6>
-            <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Edit">
+            <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post">
+                <div class="form-group row" hidden>
+                    <label asp-for="BookId" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="BookId" placeholder="Title">
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label asp-for="Title" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
@@ -34,30 +40,15 @@
                         <input type="text" class="form-control" asp-for="Price" placeholder="Price">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label asp-for="CreateDate" class="col-sm-3 col-form-label"></label>
-                    <div class="col-sm-9">
-                        <input type="date" class="form-control" asp-for="CreateDate">
-                    </div>
-                </div>
+                <input type="hidden" class="form-control" asp-for="CreateDate">
+                <input type="hidden" class="form-control" asp-for="AdminAddId">
                 <div class="form-group row">
                     <label asp-for="Author" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" asp-for="Author" placeholder="Author">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label asp-for="UpdateDate" class="col-sm-3 col-form-label"></label>
-                    <div class="col-sm-9">
-                        <input type="date" class="form-control" asp-for="UpdateDate">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label asp-for="OrderDetails" class="col-sm-3 col-form-label"></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" asp-for="OrderDetails" placeholder="OrderDetails">
-                    </div>
-                </div>
+                <input type="hidden" class="form-control" asp-for="AdminUpdateId">
                 <div class="form-check form-check-flat form-check-primary mt-0">
                     <label class="form-check-label">
                         <input type="checkbox" class="form-check-input">
@@ -65,7 +56,7 @@
                         <i class="input-frame"></i>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button type="submit" class="btn btn-primary mr-2">Edit</button>
                 <button class="btn btn-light">Cancel</button>
             </form>
         </div>

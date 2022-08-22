@@ -20,9 +20,9 @@ namespace IcreCreamParlour.Model.Entities
         public double Price { get; set; }
         [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
-        public long AdminAddId { get; set; }
+        public int AdminAddId { get; set; }
         public string Author { get; set; }
-        public long? AdminUpdateId { get; set; }
+        public int? AdminUpdateId { get; set; }
         [DataType(DataType.Date)]
         public DateTime? UpdateDate { get; set; }
         public int? IsActive { get; set; }

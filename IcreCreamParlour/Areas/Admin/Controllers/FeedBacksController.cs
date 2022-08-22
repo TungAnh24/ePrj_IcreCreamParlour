@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Service;
+﻿using IcreCreamParlour.Mapper;
+using IcreCreamParlour.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,22 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
     public class FeedBacksController : Controller
     {
         private readonly IFeedbackService _feedback;
+        private readonly IUserService _userService;
 
-        public FeedBacksController(IFeedbackService feedback)
+        public FeedBacksController(IFeedbackService feedback, IUserService userService)
         {
             _feedback = feedback;
+            _userService = userService;
         }
 
         public IActionResult Index()
         {
-            var feedback = _feedback.GetAll().ToList();
+            var feedback = _feedback.GetAll().ToList().Select(feedback =>
+            {
+                var feedbackDTO = feedback.Convert();
+                feedbackDTO.Responder = _userService.FindById(feedback.UserId.Value).Name;
+                return feedbackDTO;
+            });
             return View(feedback);
         }
 

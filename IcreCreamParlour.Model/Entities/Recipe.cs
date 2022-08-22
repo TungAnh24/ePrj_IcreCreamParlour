@@ -12,13 +12,14 @@ namespace IcreCreamParlour.Model.Entities
         public string Image { get; set; }
         public string Ingredients { get; set; }
         public string MakingProcess { get; set; }
-        public long? AdminCreateId { get; set; }
+        public int? AdminCreateId { get; set; }
         public DateTime PublistDate { get; set; }
         public int FlavorId { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public long AdminUpdateId { get; set; }
+        public int? AdminUpdateId { get; set; }
 
         public virtual Admin AdminCreate { get; set; }
         public virtual Flavor Flavor { get; set; }
+
     }
 }

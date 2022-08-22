@@ -41,9 +41,9 @@ namespace IcreCreamParlour.Service
         {
             _repository.Update(order);
         }
-        public static implicit operator OrderService(GenericRepository<OrderService> order)
+        /*public static implicit operator OrderService(GenericRepository<OrderService> order)
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

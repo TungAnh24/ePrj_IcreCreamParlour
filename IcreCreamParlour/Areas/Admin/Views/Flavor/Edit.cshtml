@@ -1,0 +1,54 @@
+﻿@model IcreCreamParlour.Model.Entities.Flavor
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Edit Flavor</h6>
+            <form class="forms-sample" asp-area="Admin" asp-controller="Flavor" asp-action="Edit">
+                <div class="form-group row" hidden>
+                    <label asp-for="FlavorId" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="FlavorId">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="FlavorName" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="FlavorName" placeholder="FlavorName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Ingredients" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Ingredients" placeholder="Ingredients">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="MakingProcess" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="MakingProcess" placeholder="MakingProcess">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Description" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Description" placeholder="Description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Image" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" asp-for="Image">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+

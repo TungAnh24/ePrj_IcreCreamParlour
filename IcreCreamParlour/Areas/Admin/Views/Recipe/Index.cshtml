@@ -1,0 +1,122 @@
+﻿@model IEnumerable<IcreCreamParlour.Model.DTO.RecipeDTO>
+@using IcreCreamParlour.Model.Entities;
+@using IcreCreamParlour.Service;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @Html.ActionLink("Thêm mới", "Create", new { @class = "btn btn-primary" })
+                <div class="table-responsive">
+                    <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table dataTable no-footer">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 187.762px;">
+                                                @Html.DisplayNameFor(model => model.RecipeId)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 293.487px;">
+                                                @Html.DisplayNameFor(model => model.RecipeName)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.Image)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.Ingredients)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.MakingProcess)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.PerSonNameCreate)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.PublistDate)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.FlavorName)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.UpdateDate)
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
+                                                @Html.DisplayNameFor(model => model.PerSonNameUpdate)
+                                            </th>
+                                            <th class="text-center">
+                                                Acion
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                @Html.DisplayFor(modelItem => item.RecipeId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RecipeName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Image)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Ingredients)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MakingProcess)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PerSonNameCreate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PublistDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FlavorName)
+                                            </td>
+
+                                            @{
+                                                if (item.UpdateDate != null)
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.UpdateDate)
+                                                    </td>
+                                                } else { 
+                                                    <td>Đang cập nhật</td>
+                                                }
+                                                if (item.AdminUpdateId != null)
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PerSonNameUpdate)
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Đang cập nhật</td>
+                                                }
+                                            }
+
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.RecipeId" class="btn btn-primary">Edit</a> |
+                                                @*<a asp-action="Details" asp-route-id="@item.BookId">Details</a> |*@
+                                                <a asp-action="Delete" asp-route-id="@item.RecipeId" class="btn btn-primary" onclick="return confirm('Bạn có muốn xóa Flavor này?')">Delete</a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

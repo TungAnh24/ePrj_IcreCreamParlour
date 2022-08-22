@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using IcreCreamParlour.Mapper;
 
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
@@ -12,15 +14,34 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
     public class RecipeController : Controller
     {
         private readonly IRecipeService _recipeService;
+        private readonly IAdminService _adminService;
+        private readonly IFlavorService _flavorService;
 
-        public RecipeController(IRecipeService recipeService)
+        public RecipeController(IRecipeService recipeService, IAdminService adminService, IFlavorService flavorService)
         {
             _recipeService = recipeService;
+            _adminService = adminService;
+            _flavorService = flavorService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var recipeList = _recipeService.GetAll().ToList().Select(recipe =>
+            {
+                var recipeDTO = recipe.Convert();
+                if (recipeDTO.AdminCreateId != null)
+                {
+
+                    recipeDTO.PerSonNameCreate = _adminService.FindById(recipeDTO.AdminCreateId.Value).Name;
+                }
+                if (recipeDTO.AdminUpdateId != null)
+                {
+                    recipeDTO.PerSonNameUpdate = _adminService.FindById(recipeDTO.AdminUpdateId.Value).Name;
+                }
+                recipeDTO.FlavorName = _flavorService.FindById(recipeDTO.FlavorId)?.FlavorName;
+                return recipeDTO;
+            });
+            return View(recipeList);
         }
         [HttpGet]
         public IActionResult Create()
@@ -34,8 +55,8 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime publishDate = DateTime.Now;
-                    recipe.PublistDate = publishDate;
+                    int AdminCreate = int.Parse(HttpContext.Session.GetString("AdminId"));
+                    recipe.AdminCreateId = AdminCreate;
                     _recipeService.InsertRecipe(recipe);
                     return RedirectToAction("Index");
                 }
@@ -59,8 +80,8 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime publishDate = DateTime.Now;
-                    recipe.PublistDate = publishDate;
+                    int AdminUpdateId = int.Parse(HttpContext.Session.GetString("AdminId"));
+                    recipe.AdminUpdateId = AdminUpdateId;
                     _recipeService.UpdateRecipe(recipe);
                     return RedirectToAction("Index");
                 }

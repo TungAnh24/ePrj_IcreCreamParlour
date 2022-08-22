@@ -12,7 +12,7 @@ namespace IcreCreamParlour.Model.Entities
             Recipes = new HashSet<Recipe>();
         }
 
-        public long AdminId { get; set; }
+        public int AdminId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public int? Roles { get; set; }

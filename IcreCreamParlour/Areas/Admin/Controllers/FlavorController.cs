@@ -36,7 +36,7 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     _flavorService.InsertFlavor(flavor);
-                    RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
@@ -59,12 +59,13 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     _flavorService.UpdateFlavor(flavor);
-                    RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
             }
             return View(flavor);
         }

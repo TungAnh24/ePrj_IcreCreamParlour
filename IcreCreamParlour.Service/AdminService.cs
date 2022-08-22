@@ -29,7 +29,7 @@ namespace IcreCreamParlour.Service
 
         public IEnumerable<Admin> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().Where(admin => admin.IsDelete == 1);
         }
 
         public void InsertAdmin(Admin admin)
