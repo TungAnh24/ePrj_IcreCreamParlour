@@ -23,7 +23,7 @@ namespace IcreCreamParlour.Model.DTO
         public string PersonCreate { get; set; }
         public string PersonUpdate { get; set; }
 
-        public BookDTO(int bookId, string title, string description, string image, double price, DateTime createDate, int adminAddId, string author, int? adminUpdateId, DateTime? updateDate, int? isActive, int? isDelete, string personCreate, string personUpdate)
+        /*public BookDTO(int bookId, string title, string description, string image, double price, DateTime createDate, int adminAddId, string author, int? adminUpdateId, DateTime? updateDate, int? isActive, int? isDelete, string personCreate, string personUpdate)
         {
             BookId = bookId;
             Title = title;
@@ -43,6 +43,6 @@ namespace IcreCreamParlour.Model.DTO
 
         public BookDTO()
         {
-        }
+        }*/
     }
 }

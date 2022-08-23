@@ -1,4 +1,4 @@
-﻿using IcreCreamParlour.Mapper;
+﻿using IcreCreamParlour.Model.Mapper;
 using IcreCreamParlour.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;

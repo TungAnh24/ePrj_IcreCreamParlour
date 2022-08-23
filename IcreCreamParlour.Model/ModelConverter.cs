@@ -1,14 +1,9 @@
-﻿using IcreCreamParlour.Model.Entities;
-using IcreCreamParlour.Model.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IcreCreamParlour.Model.DTO;
+using IcreCreamParlour.Model.Entities;
 
-namespace IcreCreamParlour.Model.Mapper
+namespace IcreCreamParlour.Model
 {
-    public static class AutoMapper
+    public static class ModelConverter
     {
         public static RecipeDTO Convert(this Recipe recipe)
         {

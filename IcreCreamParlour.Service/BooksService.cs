@@ -5,28 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IcreCreamParlour.Model;
+using IcreCreamParlour.Model.DTO;
 
 namespace IcreCreamParlour.Service
 {
     public class BooksService : IBooksService
     {
-        private readonly IGenericRepository<Book> _repository;
+        private readonly IGenericRepository<Book> _repositoryBook;
+        private readonly IGenericRepository<Admin> _repositoryAdmin;
         private readonly DbIcecreamParlourContext _context;
 
-        public BooksService(IGenericRepository<Book> repository, DbIcecreamParlourContext context)
+        public BooksService(IGenericRepository<Book> repositoryBook, IGenericRepository<Admin> repositoryAdmin, DbIcecreamParlourContext context)
         {
-            _repository = repository;
+            _repositoryBook = repositoryBook;
+            _repositoryAdmin = repositoryAdmin;
             _context = context;
         }
 
         public Book FinBookById(int id)
         {
-            return _repository.FindById(id);
+            return _repositoryBook.FindById(id);
         }
 
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<BookDTO> GetAll()
         {
-            return _repository.GetAll().Where(book => book.IsDelete == 1);
+            return _repositoryBook.GetAll().ToList().Select(book =>
+            {
+                var bookDTO = book.Convert();
+                bookDTO.PersonCreate = _repositoryAdmin.FindById(book.AdminAddId).Name;
+                if (bookDTO.AdminUpdateId != null)
+                {
+                    bookDTO.PersonUpdate = _repositoryAdmin.FindById(book.AdminUpdateId.Value).Name;
+                }
+                return bookDTO;
+            });
         }
 
         public void InsertBook(Book book)
@@ -35,7 +48,7 @@ namespace IcreCreamParlour.Service
             book.CreateDate = dateCreate;
             book.IsActive = 1;
             book.IsDelete = 1;
-            _repository.Insert(book);
+            _repositoryBook.Insert(book);
         }
 
         public void UpdateBook(Book book)
@@ -44,15 +57,15 @@ namespace IcreCreamParlour.Service
             book.UpdateDate = updateDate;
             book.IsActive = 1;
             book.IsDelete = 1;
-            _repository.Update(book);
+            _repositoryBook.Update(book);
         }
         public void DeleteBook(int id)
         {
-            var book = _repository.FindById(id);
+            var book = _repositoryBook.FindById(id);
             book.IsDelete = 0;
             if (book != null)
             {
-                _repository.Update(book);
+                _repositoryBook.Update(book);
             }
         }
 

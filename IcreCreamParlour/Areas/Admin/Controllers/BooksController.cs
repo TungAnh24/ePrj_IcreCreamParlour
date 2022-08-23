@@ -1,12 +1,8 @@
-﻿using IcreCreamParlour.Mapper;
-using IcreCreamParlour.Model.Entities;
+﻿using IcreCreamParlour.Model.Entities;
 using IcreCreamParlour.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
@@ -14,26 +10,15 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
     public class BooksController : Controller
     {
         private readonly IBooksService _booksService;
-        private readonly IAdminService _adminService;
 
-        public BooksController(IBooksService booksService, IAdminService adminService)
+        public BooksController(IBooksService booksService)
         {
             _booksService = booksService;
-            _adminService = adminService;
         }
 
         public IActionResult Index()
         {
-            return View(_booksService.GetAll().ToList().Select(book =>
-            {
-                var bookDTO = book.Convert();
-                bookDTO.PersonCreate = _adminService.FindById(book.AdminAddId).Name;
-                if (bookDTO.AdminUpdateId != null)
-                {
-                    bookDTO.PersonUpdate = _adminService.FindById(book.AdminUpdateId.Value).Name;
-                }
-                return bookDTO;
-            }));
+            return View(_booksService.GetAll());
         }
         [HttpGet]
         public IActionResult Create()

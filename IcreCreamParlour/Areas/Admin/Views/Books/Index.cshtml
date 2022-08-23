@@ -1,5 +1,5 @@
-﻿@model IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>
-@using IcreCreamParlour.Model.DTO;
+@model IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>
+@using IcreCreamParlour.Model.DTO
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -47,12 +47,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
                                                 @Html.DisplayNameFor(model => model.UpdateDate)
                                             </th>
-                                            @*<th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
-                                                    @Html.DisplayNameFor(model => model.IsActive)
-                                                </th>*@
-                                            @* <th class="sorting" tabindex="0" aria-controls="dataTableExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.45px;">
-                                                    @Html.DisplayNameFor(model => model.IsDelete)
-                                                </th>*@
                                             <th class="text-center">
                                                 Acion
                                             </th>
@@ -61,58 +55,56 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                @Html.DisplayFor(modelItem => item.BookId)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Title)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Description)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Image)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Price)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CreateDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PersonCreate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Author)
-                                            </td>
-                                            @{
-                                                if (item.AdminUpdateId == null)
-                                                {
-                                                    <td>Đang cập nhật</td>
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @Html.DisplayFor(modelItem => item.BookId)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Image)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Price)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PersonCreate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Author)
+                                                </td>
+                                                @{
+                                                    if (item.AdminUpdateId != null)
+                                                    {
+                                                        <td>@Html.DisplayFor(modelItem => item.PersonUpdate)</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Đang cập nhật</td>
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <td>@Html.DisplayFor(modelItem => item.PersonUpdate)</td>
+                                                @{
+                                                    if (item.UpdateDate == null)
+                                                    {
+                                                        <td>Đang cập nhật</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@Html.DisplayFor(modelItem => item.UpdateDate)</td>
+                                                    }
                                                 }
-                                                if (item.UpdateDate == null)
-                                                {
-                                                    <td>Đang cập nhật</td>
-                                                }
-                                                else
-                                                {
-                                                    <td>@Html.DisplayFor(modelItem => item.UpdateDate)</td>
-                                                }
-                                            }
-                                            <td>
-                                                @* @Html.ActionLink("Chi tiết", "Details", "Books", new { id = item.BookId }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Sửa", "Edit", "Books", new { id = item.BookId }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Xóa", "Delete", "Books", new { id = item.BookId }, new { @class = "btn btn-primary" })*@
-                                                <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-primary">Edit</a> |
-                                                @*<a asp-action="Details" asp-route-id="@item.BookId">Details</a> |*@
-                                                <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-primary" onclick="return confirm('Bạn có muốn xóa quyển sách này?')">Delete</a>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-primary">Edit</a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-primary" onclick="return confirm('Bạn có muốn xóa quyển sách này?')">Delete</a>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>

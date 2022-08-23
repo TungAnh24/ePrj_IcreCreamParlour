@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using IcreCreamParlour.Mapper;
+using IcreCreamParlour.Model.Mapper;
 
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
