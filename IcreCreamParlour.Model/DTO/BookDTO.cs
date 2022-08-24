@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace IcreCreamParlour.Model.DTO
         public int? IsDelete { get; set; }
         public string PersonCreate { get; set; }
         public string PersonUpdate { get; set; }
+        public IFormFile ImageFile { get; set; }
 
         /*public BookDTO(int bookId, string title, string description, string image, double price, DateTime createDate, int adminAddId, string author, int? adminUpdateId, DateTime? updateDate, int? isActive, int? isDelete, string personCreate, string personUpdate)
         {

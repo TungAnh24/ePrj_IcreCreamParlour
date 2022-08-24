@@ -54,7 +54,8 @@ namespace IcreCreamParlour.Model.Mapper
                 AdminUpdateId = book.AdminUpdateId,
                 UpdateDate = book.UpdateDate,
                 IsActive = book.IsActive,
-                IsDelete = book.IsDelete
+                IsDelete = book.IsDelete,
+                ImageFile = book.ImageFile
             };
         }
         public static FeedbackDTO Convert(this Feedback feedback)

@@ -1,8 +1,11 @@
 ﻿using IcreCreamParlour.Model.Entities;
 using IcreCreamParlour.Service;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
@@ -10,10 +13,12 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
     public class BooksController : Controller
     {
         private readonly IBooksService _booksService;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public BooksController(IBooksService booksService)
+        public BooksController(IBooksService booksService, IWebHostEnvironment hostEnvironment)
         {
             _booksService = booksService;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
@@ -26,16 +31,25 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Book book)
+        public async Task<IActionResult> Create(Book book)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    string wwwPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
+                    string extension = Path.GetExtension(book.ImageFile.FileName);
+                    string path = Path.Combine(wwwPath + "/Images/bookimg", fileName);
+                    using(var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await book.ImageFile.CopyToAsync(fileStream);
+                    }
                     int AdminCreate = int.Parse(HttpContext.Session.GetString("AdminId"));
+                    book.Image = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                     book.AdminAddId = AdminCreate;
                     _booksService.InsertBook(book);
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
             }
             catch (Exception ex)

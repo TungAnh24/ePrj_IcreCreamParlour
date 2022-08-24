@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 #nullable disable
 
@@ -29,5 +32,8 @@ namespace IcreCreamParlour.Model.Entities
         public int? IsDelete { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
     }
 }

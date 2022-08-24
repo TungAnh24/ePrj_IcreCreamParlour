@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using IcreCreamParlour.Model.Entities
+@using IcreCreamParlour.Service;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <title>@ViewData["Title"]</title>
     <!-- core:css -->
     <link href="~/assets/vendors/core/core.css" rel="stylesheet" />
+
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="~/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
@@ -22,7 +24,7 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/assets/images/favicon.png" />
 </head>
-@*@{
+@{
     Admin admin = new Admin();
     if (Context.Session.GetString("AdminId") == null)
     {
@@ -35,7 +37,7 @@
         admin = _context.Admins.SingleOrDefault(admin => admin.AdminId == AdminId);
     }
 
-}*@
+}
 <body>
     <div class="main-wrapper">
 
@@ -265,19 +267,19 @@
                     </li>
                     <li class="nav-item nav-category">Admin manager</li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Account" asp-action="Index">
                             <i class="link-icon" data-feather="users"></i>
                             <span class="link-title">List of employee</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Create">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Account" asp-action="Create">
                             <i class="link-icon" data-feather="unlock"></i>
                             <span class="link-title">Add new staff</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Edit">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Account" asp-action="Edit">
                             <i class="link-icon" data-feather="user-check"></i>
                             <span class="link-title">Edit employee information</span>
                         </a>
@@ -441,7 +443,7 @@
                                         </div>
                                         <div class="content">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                @*<p>@admin.Name</p>*@
+                                                <p>@admin.Name</p>
                                                 <p class="sub-text text-muted">2 hrs ago</p>
                                             </div>
                                             <p class="sub-text text-muted">Project deadline</p>
@@ -539,8 +541,8 @@
                                         <img src="https://via.placeholder.com/80x80" alt="">
                                     </div>
                                     <div class="info text-center">
-                                        @*<p class="name font-weight-bold mb-0">@admin.Name</p>
-                                        <p class="email text-muted mb-3">@admin.Email</p>*@
+                                        <p class="name font-weight-bold mb-0">@admin.Name</p>
+                                        <p class="email text-muted mb-3">@admin.Email</p>
                                     </div>
                                 </div>
                                 <div class="dropdown-body">

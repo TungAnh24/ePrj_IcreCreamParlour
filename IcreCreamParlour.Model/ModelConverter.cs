@@ -5,7 +5,7 @@ namespace IcreCreamParlour.Model
 {
     public static class ModelConverter
     {
-        public static RecipeDTO Convert(this Recipe recipe)
+        public static RecipeDTO Convertt(this Recipe recipe)
         {
             return new RecipeDTO()
             {
@@ -21,7 +21,7 @@ namespace IcreCreamParlour.Model
                 AdminUpdateId = recipe.AdminUpdateId
             };
         }
-        public static AdminDTO Convert(this Admin admin)
+        public static AdminDTO Convertt(this Admin admin)
         {
             return new AdminDTO()
             {
@@ -34,7 +34,7 @@ namespace IcreCreamParlour.Model
                 IsDelete = admin.IsDelete,
             };
         }
-        public static BookDTO Convert(this Book book)
+        public static BookDTO Convertt(this Book book)
         {
             return new BookDTO()
             {
@@ -52,7 +52,7 @@ namespace IcreCreamParlour.Model
                 IsDelete = book.IsDelete
             };
         }
-        public static FeedbackDTO Convert(this Feedback feedback)
+        public static FeedbackDTO Convertt(this Feedback feedback)
         {
             return new FeedbackDTO
             {
@@ -65,7 +65,7 @@ namespace IcreCreamParlour.Model
                 Email = feedback.Email
             };
         }
-        public static UserDTO Convert(this User user)
+        public static UserDTO Convertt(this User user)
         {
             return new UserDTO
             {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IcreCreamParlour.Model;
 using IcreCreamParlour.Model.DTO;
+using IcreCreamParlour.Model.Mapper;
 
 namespace IcreCreamParlour.Service
 {
@@ -30,7 +31,7 @@ namespace IcreCreamParlour.Service
 
         public IEnumerable<BookDTO> GetAll()
         {
-            return _repositoryBook.GetAll().ToList().Select(book =>
+            return _repositoryBook.GetAll().ToList().Where(book => book.IsDelete == 1).Select(book =>
             {
                 var bookDTO = book.Convert();
                 bookDTO.PersonCreate = _repositoryAdmin.FindById(book.AdminAddId).Name;
@@ -62,6 +63,7 @@ namespace IcreCreamParlour.Service
         public void DeleteBook(int id)
         {
             var book = _repositoryBook.FindById(id);
+            book.IsActive = 0;
             book.IsDelete = 0;
             if (book != null)
             {
@@ -71,7 +73,7 @@ namespace IcreCreamParlour.Service
 
         public IEnumerable<Book> FindByTitle(string strSearch)
         {
-            var book = _context.Books.Where(book => book.Title.Contains(strSearch) || strSearch == null).ToList();
+            var book = _repositoryBook.GetAll().Where(book => book.Title.Contains(strSearch) || strSearch == null).ToList();
             return book;
         }
 

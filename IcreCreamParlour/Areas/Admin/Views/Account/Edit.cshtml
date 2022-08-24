@@ -1,0 +1,61 @@
+﻿@model IcreCreamParlour.Model.Entities.Admin
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Update Account</h1>
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Insert Book</h6>
+            <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post">
+                <div class="form-group row" hidden>
+                    <label asp-for="AdminId" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="AdminId">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Name" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Email" autocomplete="off" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Role name</label>
+                    <div class="col-sm-9">
+                        <select class="form-select form-select-lg mb-3 form-control">
+                            <option value="1">Super admin</option>
+                            <option value="0">Staff</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Password" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" asp-for="Password" placeholder="Price">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Status</label>
+                    <div class="col-sm-9">
+                        <select class="form-select form-select-lg mb-3 form-control">
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+

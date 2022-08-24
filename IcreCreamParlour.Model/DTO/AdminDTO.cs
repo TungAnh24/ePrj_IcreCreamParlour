@@ -15,20 +15,9 @@ namespace IcreCreamParlour.Model.DTO
         public string Password { get; set; }
         public int? IsActive { get; set; }
         public int? IsDelete { get; set; }
+        public string RoleName { get; set; }
+        public string Status { get; set; }
+        /*public string Status { get { return Status = IsActive == 1 ? "Active" : "Inactive"; } set { Status = value; } }*/
 
-        public AdminDTO(int adminId, string name, string email, int? roles, string password, int? isActive, int? isDelete)
-        {
-            AdminId = adminId;
-            Name = name;
-            Email = email;
-            Roles = roles;
-            Password = password;
-            IsActive = isActive;
-            IsDelete = isDelete;
-        }
-
-        public AdminDTO()
-        {
-        }
     }
 }
