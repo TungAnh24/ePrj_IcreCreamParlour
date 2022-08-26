@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -21,5 +24,8 @@ namespace IcreCreamParlour.Model.Entities
         public virtual Admin AdminCreate { get; set; }
         public virtual Flavor Flavor { get; set; }
 
+        [DisplayName("Image file")]
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
     }
 }

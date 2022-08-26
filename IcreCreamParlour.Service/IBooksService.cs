@@ -15,6 +15,6 @@ namespace IcreCreamParlour.Service
         void InsertBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(int id);
-        IEnumerable<Book> FindByTitle(string strSearch);
+        IEnumerable<BookDTO> FindByTitle(string strSearch);
     }
 }

@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">Edit Flavor</h6>
-            <form class="forms-sample" asp-area="Admin" asp-controller="Flavor" asp-action="Edit">
+            <form class="forms-sample" asp-area="Admin" asp-controller="Flavor" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-group row" hidden>
                     <label asp-for="FlavorId" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
@@ -40,9 +40,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Image" class="col-sm-3 col-form-label"></label>
+                    <label asp-for="ImageFile" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" asp-for="Image">
+                        <input type="file" class="icon-file" name="ImageFile" asp-for="ImageFile" accept="images/*">
+                        <img src="@("~/images/flavorimg/" + Model.Image)" asp-append-version="true" />
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Edit</button>

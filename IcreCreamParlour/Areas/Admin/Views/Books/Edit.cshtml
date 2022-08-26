@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">Insert Book</h6>
-            <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post">
+            <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-group row" hidden>
                     <label asp-for="BookId" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
@@ -29,9 +29,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Image" class="col-sm-3 col-form-label"></label>
+                    <label asp-for="ImageFile" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
-                        <input type="file" class="icon-file" asp-for="Image">
+                        <input type="file" class="icon-file" name="ImageFile" asp-for="ImageFile" accept="images/*">
+                        <img src="@("~/images/bookimg/" + Model.Image)" asp-append-version="true" />
                     </div>
                 </div>
                 <div class="form-group row">

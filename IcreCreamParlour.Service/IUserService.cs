@@ -1,4 +1,5 @@
-﻿using IcreCreamParlour.Model.Entities;
+﻿using IcreCreamParlour.Model.DTO;
+using IcreCreamParlour.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace IcreCreamParlour.Service
 {
     public interface IUserService
     {
-        IEnumerable<User> GetAll();
+        IEnumerable<UserDTO> GetAll();
         User FindById(int id);
         void InsertUser(User user);
         void UpdateUser(User user);

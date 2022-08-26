@@ -1,4 +1,6 @@
-﻿using IcreCreamParlour.Model.Entities;
+﻿using IcreCreamParlour.Model.DTO;
+using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Model.Mapper;
 using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
@@ -29,9 +31,24 @@ namespace IcreCreamParlour.Service
             return _repoRecipe.FindById(id);
         }
 
-        public IEnumerable<Recipe> GetAll()
+        public IEnumerable<RecipeDTO> GetAll()
         {
-            return _repoRecipe.GetAll();
+            var recipeList = _repoRecipe.GetAll().ToList().Select(recipe =>
+            {
+                var recipeDTO = recipe.Convert();
+                if (recipeDTO.AdminCreateId != null)
+                {
+
+                    recipeDTO.PerSonNameCreate = _repoAdmin.FindById(recipeDTO.AdminCreateId.Value).Name;
+                }
+                if (recipeDTO.AdminUpdateId != null)
+                {
+                    recipeDTO.PerSonNameUpdate = _repoAdmin.FindById(recipeDTO.AdminUpdateId.Value).Name;
+                }
+                recipeDTO.FlavorName = _repoFlavor.FindById(recipeDTO.FlavorId)?.FlavorName;
+                return recipeDTO;
+            });
+            return recipeList;
         }
 
         public void InsertRecipe(Recipe recipe)

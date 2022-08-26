@@ -23,7 +23,8 @@ namespace IcreCreamParlour.Model.Mapper
                 PublistDate = recipe.PublistDate,
                 FlavorId = recipe.FlavorId,
                 UpdateDate = recipe.UpdateDate,
-                AdminUpdateId = recipe.AdminUpdateId
+                AdminUpdateId = recipe.AdminUpdateId,
+                ImageFile = recipe.ImageFile
             };
         }
         public static AdminDTO Convert(this Admin admin)
@@ -86,6 +87,19 @@ namespace IcreCreamParlour.Model.Mapper
                 JoinDate = user.JoinDate,
                 IsActive = user.IsActive,
                 IsDelete = user.IsDelete
+            };
+        }
+        public static FlavorDTO Convert(this Flavor flavor)
+        {
+            return new FlavorDTO()
+            {
+                FlavorId = flavor.FlavorId,
+                FlavorName = flavor.FlavorName,
+                Ingredients = flavor.Ingredients,
+                MakingProcess = flavor.MakingProcess,
+                Description = flavor.Description,
+                Image = flavor.Image,
+                ImageFile = flavor.ImageFile
             };
         }
     }

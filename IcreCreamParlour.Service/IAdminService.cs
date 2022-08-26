@@ -15,5 +15,6 @@ namespace IcreCreamParlour.Service
         void InsertAdmin(Admin admin);
         void UpdateAdmin(Admin admin);
         void DeleteAdmin(int id);
+        void UnlockAcount(int id);
     }
 }

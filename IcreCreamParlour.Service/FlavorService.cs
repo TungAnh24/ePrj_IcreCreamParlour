@@ -1,4 +1,6 @@
-﻿using IcreCreamParlour.Model.Entities;
+﻿using IcreCreamParlour.Model.DTO;
+using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Model.Mapper;
 using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
@@ -27,9 +29,9 @@ namespace IcreCreamParlour.Service
             return _repository.FindById(id);
         }
 
-        public IEnumerable<Flavor> GetAll()
+        public IEnumerable<FlavorDTO> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList().Select(flavor => flavor.Convert());
         }
 
         public void InsertFlavor(Flavor flavor)

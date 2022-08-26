@@ -1,4 +1,5 @@
 ﻿using IcreCreamParlour.Model.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,27 +24,6 @@ namespace IcreCreamParlour.Model.DTO
         public string PerSonNameCreate { get; set; }
         public string PerSonNameUpdate { get; set; }
         public List<Recipe> Recipes { get; set; }
-
-        public RecipeDTO(int recipeId, string recipeName, string image, string ingredients, string makingProcess, int? adminCreateId, DateTime publistDate, int flavorId, DateTime? updateDate, int? adminUpdateId, string flavorName, string perSonNameCreate, string perSonNameUpdate, List<Recipe> recipes)
-        {
-            RecipeId = recipeId;
-            RecipeName = recipeName;
-            Image = image;
-            Ingredients = ingredients;
-            MakingProcess = makingProcess;
-            AdminCreateId = adminCreateId;
-            PublistDate = publistDate;
-            FlavorId = flavorId;
-            UpdateDate = updateDate;
-            AdminUpdateId = adminUpdateId;
-            FlavorName = flavorName;
-            PerSonNameCreate = perSonNameCreate;
-            PerSonNameUpdate = perSonNameUpdate;
-            Recipes = recipes;
-        }
-
-        public RecipeDTO()
-        {
-        }
+        public IFormFile ImageFile { get; set; }
     }
 }

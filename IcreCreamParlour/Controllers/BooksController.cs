@@ -29,7 +29,7 @@ namespace IcreCreamParlour.Controllers
             {
                 return Redirect("Home/Login");
             }*/
-            var bookClientView = _booksService.GetAll();
+            var bookClientView = _booksService.GetAll().ToList();
             return View(bookClientView);
         }
     }

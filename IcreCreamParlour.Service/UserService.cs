@@ -1,4 +1,6 @@
-﻿using IcreCreamParlour.Model.Entities;
+﻿using IcreCreamParlour.Model.DTO;
+using IcreCreamParlour.Model.Entities;
+using IcreCreamParlour.Model.Mapper;
 using IcreCreamParlour.Repository;
 using System;
 using System.Collections.Generic;
@@ -19,18 +21,24 @@ namespace IcreCreamParlour.Service
 
         public void DeleteUser(int id)
         {
-            _repository.Delete(id);        }
+            _repository.Delete(id);
+        }
 
         public User FindById(int id)
         {
-            return _repository.FindById(id);        }
+            return _repository.FindById(id);
+        }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserDTO> GetAll()
         {
-            return _repository.GetAll();       }
+            var users = _repository.GetAll().ToList().Select(user => user.Convert());
+            return users;
+        }
 
         public void InsertUser(User user)
         {
+            DateTime joinDate = DateTime.Now;
+            user.JoinDate = joinDate;
             _repository.Insert(user);
         }
 

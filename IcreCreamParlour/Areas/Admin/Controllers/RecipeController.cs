@@ -2,11 +2,12 @@
 using IcreCreamParlour.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using IcreCreamParlour.Model.Mapper;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
@@ -14,33 +15,17 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
     public class RecipeController : Controller
     {
         private readonly IRecipeService _recipeService;
-        private readonly IAdminService _adminService;
-        private readonly IFlavorService _flavorService;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public RecipeController(IRecipeService recipeService, IAdminService adminService, IFlavorService flavorService)
+        public RecipeController(IRecipeService recipeService, IWebHostEnvironment hostEnvironment)
         {
             _recipeService = recipeService;
-            _adminService = adminService;
-            _flavorService = flavorService;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
         {
-            var recipeList = _recipeService.GetAll().ToList().Select(recipe =>
-            {
-                var recipeDTO = recipe.Convert();
-                if (recipeDTO.AdminCreateId != null)
-                {
-
-                    recipeDTO.PerSonNameCreate = _adminService.FindById(recipeDTO.AdminCreateId.Value).Name;
-                }
-                if (recipeDTO.AdminUpdateId != null)
-                {
-                    recipeDTO.PerSonNameUpdate = _adminService.FindById(recipeDTO.AdminUpdateId.Value).Name;
-                }
-                recipeDTO.FlavorName = _flavorService.FindById(recipeDTO.FlavorId)?.FlavorName;
-                return recipeDTO;
-            });
+            var recipeList = _recipeService.GetAll().ToList();
             return View(recipeList);
         }
         [HttpGet]
@@ -49,12 +34,21 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Recipe recipe)
+        public async Task<IActionResult> Create(Recipe recipe)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    string wwwPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(recipe.ImageFile.FileName);
+                    string extension = Path.GetExtension(recipe.ImageFile.FileName);
+                    recipe.Image = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwPath + "/Images/recipeimg/", recipe.Image);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await recipe.ImageFile.CopyToAsync(fileStream);
+                    }
                     int AdminCreate = int.Parse(HttpContext.Session.GetString("AdminId"));
                     recipe.AdminCreateId = AdminCreate;
                     _recipeService.InsertRecipe(recipe);
@@ -74,12 +68,21 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             return View(getRecipeByid);
         }
         [HttpPost]
-        public IActionResult Edit(Recipe recipe)
+        public async Task<IActionResult> Edit(Recipe recipe)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    string wwwPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(recipe.ImageFile.FileName);
+                    string extension = Path.GetExtension(recipe.ImageFile.FileName);
+                    recipe.Image = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwPath + "/Images/recipeimg/", recipe.Image);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await recipe.ImageFile.CopyToAsync(fileStream);
+                    }
                     int AdminUpdateId = int.Parse(HttpContext.Session.GetString("AdminId"));
                     recipe.AdminUpdateId = AdminUpdateId;
                     _recipeService.UpdateRecipe(recipe);

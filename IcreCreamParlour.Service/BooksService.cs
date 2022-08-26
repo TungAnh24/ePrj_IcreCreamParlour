@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using IcreCreamParlour.Model;
 using IcreCreamParlour.Model.DTO;
 using IcreCreamParlour.Model.Mapper;
 
@@ -71,9 +69,9 @@ namespace IcreCreamParlour.Service
             }
         }
 
-        public IEnumerable<Book> FindByTitle(string strSearch)
+        public IEnumerable<BookDTO> FindByTitle(string strSearch)
         {
-            var book = _repositoryBook.GetAll().Where(book => book.Title.Contains(strSearch) || strSearch == null).ToList();
+            var book = _repositoryBook.GetAll().ToList().Where(book => book.Title.Contains(strSearch) || strSearch == null).Select(book => book.Convert());
             return book;
         }
 

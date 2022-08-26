@@ -19,7 +19,8 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_userServiced.GetAll().ToList());
+            var users = _userServiced.GetAll();
+            return View(users);
         }
         [HttpGet]
         public IActionResult Create()
@@ -33,8 +34,6 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DateTime joinDate = DateTime.Now;
-                    user.JoinDate = joinDate;
                     _userServiced.InsertUser(user);
                     return RedirectToAction("Index");
                 }

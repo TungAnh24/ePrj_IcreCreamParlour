@@ -22,7 +22,8 @@ namespace IcreCreamParlour.Service
         public void DeleteAdmin(int id)
         {
             var getAdminById = _repository.FindById(id);
-            getAdminById.IsDelete = 0;
+            getAdminById.IsActive = 0;
+            getAdminById.IsDelete = 1;
             _repository.Update(getAdminById);
         }
 
@@ -43,6 +44,7 @@ namespace IcreCreamParlour.Service
 
         public void InsertAdmin(Admin admin)
         {
+            admin.Roles = 0;
             admin.IsActive = 1;
             admin.IsDelete = 1;
             _repository.Insert(admin);
@@ -50,9 +52,20 @@ namespace IcreCreamParlour.Service
 
         public void UpdateAdmin(Admin admin)
         {
+            admin.Roles = 0;
+            admin.IsDelete = 1;
             admin.IsDelete = 1;
             _repository.Update(admin);
         }
+
+        public void UnlockAcount(int id)
+        {
+            var getAdminById = _repository.FindById(id);
+            getAdminById.IsActive = 1;
+            getAdminById.IsDelete = 1;
+            _repository.Update(getAdminById);
+        }
+
         public static implicit operator AdminService(GenericRepository<Admin> admin)
         {
             throw new NotImplementedException();

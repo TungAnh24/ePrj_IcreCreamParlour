@@ -36,7 +36,7 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 HttpContext.Session.SetString("AdminId", account.AdminId.ToString());
                 ViewBag.message1 = "1";
-                return Redirect("/Admin/Home/Index");
+                return Redirect("/Admin/Home");
             }
             return RedirectToAction("Login");
         }

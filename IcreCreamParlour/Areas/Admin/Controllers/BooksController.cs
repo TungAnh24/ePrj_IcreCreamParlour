@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace IcreCreamParlour.Areas.Admin.Controllers
 {
@@ -21,9 +23,15 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index( int? page, string strSearching = "")
         {
-            return View(_booksService.GetAll());
+            var books = _booksService.GetAll().ToList();
+            if (strSearching != "" && strSearching != null)
+            {
+                books = books.Where(book => book.Title.Contains((strSearching))).ToPagedList(page ?? 1, 5).ToList();
+                ViewBag.test = books;
+            }
+            return View(books);
         }
         [HttpGet]
         public IActionResult Create()
@@ -40,13 +48,13 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
                     string wwwPath = _hostEnvironment.WebRootPath;
                     string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
                     string extension = Path.GetExtension(book.ImageFile.FileName);
-                    string path = Path.Combine(wwwPath + "/Images/bookimg", fileName);
-                    using(var fileStream = new FileStream(path, FileMode.Create))
+                    book.Image = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwPath + "/Images/bookimg/", book.Image);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
                     {
                         await book.ImageFile.CopyToAsync(fileStream);
                     }
                     int AdminCreate = int.Parse(HttpContext.Session.GetString("AdminId"));
-                    book.Image = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                     book.AdminAddId = AdminCreate;
                     _booksService.InsertBook(book);
                     return RedirectToAction(nameof(Index));
@@ -64,12 +72,21 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             return View(_booksService.FinBookById(id));
         }
         [HttpPost]
-        public IActionResult Edit(Book book)
+        public async Task<IActionResult> Edit(Book book)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    string wwwPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(book.ImageFile.FileName);
+                    string extension = Path.GetExtension(book.ImageFile.FileName);
+                    book.Image = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwPath + "/Images/bookimg/", book.Image);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await book.ImageFile.CopyToAsync(fileStream);
+                    }
                     int AdminUpdateId = int.Parse(HttpContext.Session.GetString("AdminId"));
                     book.AdminUpdateId = AdminUpdateId;
                     _booksService.UpdateBook(book);

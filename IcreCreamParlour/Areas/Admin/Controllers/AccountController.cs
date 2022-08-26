@@ -58,7 +58,7 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _adminService.InsertAdmin(admin);
+                    _adminService.UpdateAdmin(admin);
                     return RedirectToAction("Index");
                 }
             }
@@ -68,9 +68,14 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             }
             return View(admin);
         }
-        public IActionResult Delete(int id)
+        public IActionResult LockAcount(int id)
         {
             _adminService.DeleteAdmin(id);
+            return RedirectToAction("Index");
+        }
+        public IActionResult UnlockAccount(int id)
+        {
+            _adminService.UnlockAcount(id);
             return RedirectToAction("Index");
         }
     }
