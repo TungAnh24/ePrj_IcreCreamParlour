@@ -58,6 +58,7 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
                     book.AdminAddId = AdminCreate;
                     _booksService.InsertBook(book);
                     return RedirectToAction(nameof(Index));
+
                 }
             }
             catch (Exception ex)
@@ -89,6 +90,10 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
                     }
                     int AdminUpdateId = int.Parse(HttpContext.Session.GetString("AdminId"));
                     book.AdminUpdateId = AdminUpdateId;
+                    if (book.Image == null)
+                    {
+                        book.Image = book.Image;
+                    }
                     _booksService.UpdateBook(book);
                     return RedirectToAction("Index");
                 }

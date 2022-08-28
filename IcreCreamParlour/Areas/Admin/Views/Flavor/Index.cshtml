@@ -8,10 +8,27 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                @Html.ActionLink("Thêm mới", "Create", new { @class = "btn btn-primary" })
+                <div class="navbar-header">
+                    <a asp-action="Create" class="btn btn-outline-danger">Isert flavor</a>
+                    <button type="button" class="navbar-toggle collapsed pull-left btn btn-outline-info" data-toggle="collapse" data-target="#navbar-collapse">
+                        Search by here
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div> <!-- navbar-header -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <form class="navbar-form navbar-right" role="search" asp-action="Index" method="get">
+                        <div class="form-group input-group">
+                            <input type="search" class="form-control input-sm" placeholder="Search here ..." id="sitesearch" name="strSearching">
+                            <span class="input-group-addon"><button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button></span>
+                        </div>
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <div id="dataTableExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                        <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTableExample_length"><label>Show <select name="dataTableExample_length" aria-controls="dataTableExample" class="custom-select custom-select-sm form-control"><option value="10">10</option><option value="30">30</option><option value="50">50</option><option value="-1">All</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="dataTableExample_filter" class="dataTables_filter"><label><input type="search" class="form-control" placeholder="Search" aria-controls="dataTableExample"></label></div></div></div><div class="row">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <table id="dataTableExample" class="table dataTable no-footer" role="grid" aria-describedby="dataTableExample_info">
                                     <thead>
@@ -62,16 +79,19 @@
                                                     <img src="@("~/images/flavorimg/" + item.Image)" asp-append-version="true" />
                                                 </td>
                                                 <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.FlavorId" class="btn btn-primary">Edit</a> |
-                                                    @*<a asp-action="Details" asp-route-id="@item.BookId">Details</a> |*@
-                                                    <a asp-action="Delete" asp-route-id="@item.FlavorId" class="btn btn-primary" onclick="return confirm('Bạn có muốn xóa Flavor này?')">Delete</a>
+                                                    <a asp-action="Edit" asp-route-id="@item.FlavorId" class="text-warning btn btn-outline-warning">
+                                                        <i data-feather="edit-2"></i>
+                                                    </a>
+                                                    <a asp-action="Delete" asp-route-id="@item.FlavorId" class="text-danger btn btn-outline-danger" onclick="return confirm('Do you want to remove this flavor?')">
+                                                        <i data-feather="trash-2"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         }
                                     </tbody>
                                 </table>
                             </div>
-                        </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTableExample_info" role="status" aria-live="polite">Showing 1 to 10 of 22 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTableExample_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTableExample_previous"><a href="#" aria-controls="dataTableExample" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTableExample" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTableExample" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTableExample" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="dataTableExample_next"><a href="#" aria-controls="dataTableExample" data-dt-idx="4" tabindex="0" class="page-link">Next</a></li></ul></div></div></div>
+                        </div>
                     </div>
                 </div>
             </div>

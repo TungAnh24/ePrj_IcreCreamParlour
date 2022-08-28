@@ -11,7 +11,7 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Insert Book</h6>
+            <h6 class="card-title">Edit recipe</h6>
             <form class="forms-sample" asp-area="Admin" asp-controller="Recipe" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-group row" hidden>
                     <label asp-for="RecipeId" class="col-sm-3 col-form-label"></label>
@@ -83,8 +83,8 @@
                         <input type="text" class="form-control" asp-for="AdminUpdateId">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mr-2">Create</button>
-                <button class="btn btn-light">Cancel</button>
+                <button type="submit" class="btn btn-inverse-primary mr-2">Edit recipe</button>
+                <a asp-controller="Recipe" asp-action="Index" class="btn btn-inverse-danger">Cancel</a>
             </form>
         </div>
     </div>

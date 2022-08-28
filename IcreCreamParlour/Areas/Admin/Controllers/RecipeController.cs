@@ -23,9 +23,13 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string strSearching)
         {
             var recipeList = _recipeService.GetAll().ToList();
+            if (strSearching != null && strSearching != "")
+            {
+                recipeList = recipeList.Where(recipe => recipe.RecipeName.Contains(strSearching)).ToList();
+            }
             return View(recipeList);
         }
         [HttpGet]

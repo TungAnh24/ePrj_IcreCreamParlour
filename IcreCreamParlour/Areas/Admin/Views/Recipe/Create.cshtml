@@ -11,7 +11,7 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Insert Book</h6>
+            <h6 class="card-title">Add new recipe</h6>
             <form class="forms-sample" asp-area="Admin" asp-controller="Recipe" asp-action="Create" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label asp-for="RecipeName" class="col-sm-3 col-form-label"></label>
@@ -37,31 +37,24 @@
                         <input type="text" class="form-control" asp-for="MakingProcess" placeholder="MakingProcess">
                     </div>
                 </div>
-                    <div class="form-group row">
-                        <label asp-for="FlavorId" class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <select asp-for="FlavorId" class="form-select form-select-lg mb-3 form-control">
-                                <option selected>Chọn Flavor</option>
-                                @{
-                                    List<Flavor> flavors = _context.Flavors.ToList();
-                                    foreach (var item in flavors)
-                                    {
-                                        <option value="@item.FlavorId">@item.FlavorName</option>
+                <div class="form-group row">
+                    <label asp-for="FlavorId" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <select asp-for="FlavorId" class="form-select form-select-lg mb-3 form-control">
+                            <option selected>Chọn Flavor</option>
+                            @{
+                                List<Flavor> flavors = _context.Flavors.ToList();
+                                foreach (var item in flavors)
+                                {
+                                    <option value="@item.FlavorId">@item.FlavorName</option>
 
-                                    }
                                 }
-                            </select>
-                        </div>
+                            }
+                        </select>
                     </div>
-                    <div class="form-check form-check-flat form-check-primary mt-0">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input">
-                            Remember me
-                            <i class="input-frame"></i>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Create</button>
-                    <button class="btn btn-light">Cancel</button>
+                </div>
+                <button type="submit" class="btn btn-inverse-primary mr-2">Add new</button>
+                <a asp-controller="Recipe" asp-action="Index" class="btn btn-inverse-danger">Cancel</a>
             </form>
         </div>
     </div>

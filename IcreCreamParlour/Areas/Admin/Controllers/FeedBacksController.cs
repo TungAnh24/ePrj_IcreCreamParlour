@@ -20,9 +20,9 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             _userService = userService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string strSearching)
         {
-            var feedback = _feedback.GetAll().ToList().Select(feedback =>
+            var feedback = _feedback.GetAll().ToList().Where(feedback => feedback.FeedbackDetail.Contains(strSearching)).Select(feedback =>
             {
                 var feedbackDTO = feedback.Convert();
                 feedbackDTO.Responder = _userService.FindById(feedback.UserId.Value).Name;

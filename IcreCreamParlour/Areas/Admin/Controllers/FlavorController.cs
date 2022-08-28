@@ -22,10 +22,14 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string strSearching = "")
         {
-            var flavor = _flavorService.GetAll();
-            return View(flavor);
+            var flavors = _flavorService.GetAll();
+            if (strSearching != null && strSearching != "")
+            {
+                flavors = flavors.Where(flavor => flavor.FlavorName.Contains(strSearching)).ToList();
+            }
+            return View(flavors);
         }
         [HttpGet]
         public IActionResult Create()

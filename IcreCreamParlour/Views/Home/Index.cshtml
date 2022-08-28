@@ -135,17 +135,50 @@
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel service-carousel">
-                    @foreach (var item in ViewData["recipes"] as IEnumerable<IcreCreamParlour.Model.DTO.RecipeDTO>)
-                    {
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="@("~/images/recipeimg/"+item.Image)" asp-append-version="true" style="object-fit: cover;">
+                    @*@foreach (var item in ViewData["recipes"] as IEnumerable<IcreCreamParlour.Model.DTO.RecipeDTO>)
+                        {
+                            <div class="service-item">
+                                <div class="service-img mx-auto">
+                                    <img class="rounded-circle w-100 h-100 bg-light p-3" src="@("~/images/recipeimg/"+item.Image)" asp-append-version="true" style="object-fit: cover;">
+                                </div>
+                                <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
+                                    <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">@item.RecipeName</h5>
+                                    <p>@item.Ingredients</p>
+                                    <p>@item.MakingProcess</p>
+                                    <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Learn More</a>
+                                </div>
                             </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">@item.RecipeName</h5>
-                                <p>@item.Ingredients</p>
-                                <p>@item.MakingProcess</p>
-                                <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Learn More</a>
+                        }*@
+                    @foreach (var item in ViewData["books"] as IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>)
+                    {
+                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                            <div class="bg-primary mt-n5 py-3 pricebook" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">@item.Price</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 imgbook" style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="@("~/images/bookimg/"+item.Image)" asp-append-version="true" style="object-fit: cover;">
+                                </div>
+                                <div class="titlebook">
+                                    <h5 class="font-weight-bold mb-4">@item.Title</h5>
+                                </div>
+                                <div class="authorbook">
+                                    <h4 class="font-weight-bold mb-4">@item.Author</h4>
+                                </div>
+                                <p>@item.Description</p>
+                            @*<div class="image">
+                                <img src="img/hehe.png" alt="Booster">
+                            </div>
+                            <div class="name">
+                                <h2>niacinamide booster</h2>
+                            </div>
+                            <div class="price">
+                                <span>400</span>
+                            </div>
+                            <div class="btnOrderBook">
+                                <button>Add To Cart</button>
+                            </div>*@
+                            <div class="btnOrderBook">
+                                <a href="" class="btn btn-sm btn-secondary" id="addCart">Order Now</a>
                             </div>
                         </div>
                     }
@@ -189,17 +222,31 @@
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel product-carousel">
-                    @foreach (var item in ViewData["books"] as IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>)
+                    @*@foreach (var item in ViewData["books"] as IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>)
+                        {
+                            <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">@item.Price</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="@("~/images/bookimg/"+item.Image)" asp-append-version="true" style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">@item.Title</h5>
+                                <a href="" class="btn btn-sm btn-secondary" id="addCart">Order Now</a>
+                            </div>
+                        }*@
+                    @foreach (var item in ViewData["recipes"] as IEnumerable<IcreCreamParlour.Model.DTO.RecipeDTO>)
                     {
-                        <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                            <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                                <h4 class="font-weight-bold text-white mb-0">@item.Price</h4>
+                        <div class="service-item">
+                            <div class="service-img mx-auto">
+                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="@("~/images/recipeimg/"+item.Image)" asp-append-version="true" style="object-fit: cover;">
                             </div>
-                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                                <img class="rounded-circle w-100 h-100" src="@("~/images/bookimg/"+item.Image)" asp-append-version="true" style="object-fit: cover;">
+                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
+                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">@item.RecipeName</h5>
+                                <p>@item.Ingredients</p>
+                                <p>@item.MakingProcess</p>
+                                <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Learn More</a>
                             </div>
-                            <h5 class="font-weight-bold mb-4">@item.Title</h5>
-                            <a href="" class="btn btn-sm btn-secondary" id="addCart">Order Now</a>
                         </div>
                     }
                 </div>
@@ -270,26 +317,25 @@
     </div>
 </div>
 <!-- Testimonial End -->
-
 @*<script>
 
-    const addCart = document.querySelectorAll('#addCart');
-    const cartShow = document.querySelector('#navbarMenu span');
-    console.log(addCart);
-    for (var i = 0; i < addCart.length; i++) {
-        addCart[i].addEventListener('click', () => {
-            cartCount();
-        })
-    }
-    function cartCount() {
-        let prdCount = localStorage.getItem('cartsCount');
-        prdCount = parseInt(parse);
-        if (prdCount) {
-            localStorage.setItem('cartsCount', prdCount + 1);
-            cartShow.textContent = prdCount + 1;
-        } else {
-            localStorage.setItem('cartsCount', 1);
-            cartShow.textContent = prdCount = 1;
+        const addCart = document.querySelectorAll('#addCart');
+        const cartShow = document.querySelector('#navbarMenu span');
+        console.log(addCart);
+        for (var i = 0; i < addCart.length; i++) {
+            addCart[i].addEventListener('click', () => {
+                cartCount();
+            })
         }
-    }
-</script>*@
+        function cartCount() {
+            let prdCount = localStorage.getItem('cartsCount');
+            prdCount = parseInt(parse);
+            if (prdCount) {
+                localStorage.setItem('cartsCount', prdCount + 1);
+                cartShow.textContent = prdCount + 1;
+            } else {
+                localStorage.setItem('cartsCount', 1);
+                cartShow.textContent = prdCount = 1;
+            }
+        }
+    </script>*@

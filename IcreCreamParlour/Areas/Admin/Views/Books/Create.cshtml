@@ -7,7 +7,7 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Insert Book</h6>
+            <h6 class="card-title">Add new book</h6>
             <form class="forms-sample" asp-area="Admin" asp-controller="Books" asp-action="Create" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label asp-for="Title" class="col-sm-3 col-form-label"></label>
@@ -41,15 +41,8 @@
                         <input type="text" class="form-control" asp-for="Author" placeholder="Author">
                     </div>
                 </div>
-                <div class="form-check form-check-flat form-check-primary mt-0">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        Remember me
-                        <i class="input-frame"></i>
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                <button type="submit" class="btn btn-inverse-primary mr-2">Add new</button>
+                <a asp-controller="Books" asp-action="Index" class="btn btn-inverse-danger">Cancel</a>
             </form>
         </div>
     </div>

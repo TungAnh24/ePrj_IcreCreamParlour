@@ -8,7 +8,7 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Insert Book</h6>
+            <h6 class="card-title">Edit account</h6>
             <form class="forms-sample" asp-area="Admin" asp-controller="Account" asp-action="Edit" method="post">
                 <div class="form-group row" hidden>
                     <label asp-for="AdminId" class="col-sm-3 col-form-label"></label>
@@ -29,14 +29,14 @@
                     </div>
                 </div>
                 @*<div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Role name</label>
-                    <div class="col-sm-9">
-                        <select class="form-select form-select-lg mb-3 form-control">
-                            <option value="1">Super admin</option>
-                            <option value="0">Staff</option>
-                        </select>
-                    </div>
-                </div>*@
+            <label class="col-sm-3 col-form-label">Role name</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-lg mb-3 form-control">
+                    <option value="1">Super admin</option>
+                    <option value="0">Staff</option>
+                </select>
+            </div>
+        </div>*@
                 <div class="form-group row">
                     <label asp-for="Password" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-9">
@@ -44,16 +44,16 @@
                     </div>
                 </div>
                 @*<div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Status</label>
-                    <div class="col-sm-9">
-                        <select class="form-select form-select-lg mb-3 form-control">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                    </div>
-                </div>*@
-                <button type="submit" class="btn btn-primary mr-2">Edit</button>
-                <button class="btn btn-light">Cancel</button>
+            <label class="col-sm-3 col-form-label">Status</label>
+            <div class="col-sm-9">
+                <select class="form-select form-select-lg mb-3 form-control">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+            </div>
+        </div>*@
+                <button type="submit" class="btn btn-inverse-primary mr-2">Edit account</button>
+                <a asp-controller="Account" asp-action="Index" class="btn btn-inverse-danger">Cancel</a>
             </form>
         </div>
     </div>

@@ -7,7 +7,7 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Insert Book</h6>
+            <h6 class="card-title">Add new account</h6>
             <form class="forms-sample" asp-area="Admin" asp-controller="Account" asp-action="Create">
                 <div class="form-group row">
                     <label asp-for="Name" class="col-sm-3 col-form-label"></label>
@@ -27,8 +27,8 @@
                         <input type="text" class="form-control" asp-for="Password" placeholder="Password">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                <button type="submit" class="btn btn-inverse-primary mr-2">Add new</button>
+                <a asp-controller="Account" asp-action="Index" class="btn btn-inverse-danger">Cancel</a>
             </form>
         </div>
     </div>
