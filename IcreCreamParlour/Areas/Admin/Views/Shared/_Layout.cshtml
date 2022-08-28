@@ -28,7 +28,7 @@
     Admin admin = new Admin();
     if (Context.Session.GetString("AdminId") == null)
     {
-        <script>window.location.href = "Admin/Home/Login";</script>
+        <script>window.location.href = "/Books";</script>
     }
     else
     {
@@ -451,7 +451,7 @@
                                         </div>
                                         <div class="content">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <p>@admin.Name</p>
+                                                @*<p>@admin.Name</p>*@
                                                 <p class="sub-text text-muted">2 hrs ago</p>
                                             </div>
                                             <p class="sub-text text-muted">Project deadline</p>
@@ -549,8 +549,8 @@
                                         <img src="https://via.placeholder.com/80x80" alt="">
                                     </div>
                                     <div class="info text-center">
-                                        <p class="name font-weight-bold mb-0">@admin.Name</p>
-                                        <p class="email text-muted mb-3">@admin.Email</p>
+                                        @*<p class="name font-weight-bold mb-0">@admin.Name</p>
+                                        <p class="email text-muted mb-3">@admin.Email</p>*@
                                     </div>
                                 </div>
                                 <div class="dropdown-body">
