@@ -41,10 +41,16 @@
                         <input type="text" class="form-control" asp-for="Author" placeholder="Author">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-inverse-primary mr-2">Add new</button>
+                <button class="btn btn-inverse-primary mr-2">Add new</button>
                 <a asp-controller="Books" asp-action="Index" class="btn btn-inverse-danger">Cancel</a>
             </form>
         </div>
     </div>
 </div>
+@{ var message = ViewBag.InsertBook; }
+
+@if (message != null && message == "1")
+{
+    <script type="text/javascript">alert("Title already exists!")</script>
+}
 

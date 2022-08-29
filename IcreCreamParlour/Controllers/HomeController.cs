@@ -37,6 +37,28 @@ namespace IcreCreamParlour.Controllers
             ViewData["users"] = _userService.GetAll();
             return View();
         }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string username, string password)
+        {
+            var account = _userService.GetAll().ToList().SingleOrDefault(account => account.Email.Equals(username) && account.Password.Equals(password));
+            if (account != null)
+            {
+                ViewBag.message1 = "1";
+                return Redirect("/Home");
+            }
+            return RedirectToAction("Login");
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

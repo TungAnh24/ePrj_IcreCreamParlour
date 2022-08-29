@@ -75,6 +75,11 @@ namespace IcreCreamParlour.Service
             return book;
         }
 
+        public bool IsduplicateBook(Book book)
+        {
+            return true;
+        }
+
         public static implicit operator BooksService(GenericRepository<Book> book)
         {
             throw new NotImplementedException();

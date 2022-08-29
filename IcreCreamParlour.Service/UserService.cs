@@ -31,7 +31,7 @@ namespace IcreCreamParlour.Service
 
         public IEnumerable<UserDTO> GetAll()
         {
-            var users = _repository.GetAll().ToList().Select(user => user.Convert());
+            var users = _repository.GetAll().Where(user => user.IsActive == 1 && user.IsDelete == 1).ToList().Select(user => user.Convert());
             return users;
         }
 

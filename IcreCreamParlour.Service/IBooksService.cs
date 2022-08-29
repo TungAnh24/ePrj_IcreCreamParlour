@@ -15,6 +15,7 @@ namespace IcreCreamParlour.Service
         void InsertBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(int id);
+        bool IsduplicateBook(Book book);
         IEnumerable<BookDTO> FindByTitle(string strSearch);
     }
 }

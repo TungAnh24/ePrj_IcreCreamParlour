@@ -56,8 +56,18 @@ namespace IcreCreamParlour.Areas.Admin.Controllers
                     }
                     int AdminCreate = int.Parse(HttpContext.Session.GetString("AdminId"));
                     book.AdminAddId = AdminCreate;
-                    _booksService.InsertBook(book);
-                    return RedirectToAction(nameof(Index));
+                    if (_booksService.GetAll().Any(b => b.Title == book.Title && b.Author == book.Author))
+                    {
+
+                        ViewBag.InsertBook = "1";
+                    }
+                    else
+                    {
+                        _booksService.InsertBook(book);
+                        return RedirectToAction(nameof(Index));
+                    }
+
+                    /*return RedirectToAction(nameof(Index));*/
 
                 }
             }
