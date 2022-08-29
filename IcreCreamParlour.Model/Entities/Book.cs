@@ -17,13 +17,22 @@ namespace IcreCreamParlour.Model.Entities
         }
 
         public int BookId { get; set; }
+        [Required]
+        [Display(Name = "Book's Title")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Book's title length must be between 3 and 100")]
         public string Title { get; set; }
+        [Required]
+        [Display(Name ="Description")]
         public string Description { get; set; }
         public string Image { get; set; }
+        [Required]
         public double Price { get; set; }
         [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
         public int AdminAddId { get; set; }
+        [Required]
+        [Display(Name ="Author")]
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "Author length must be between 3 and 150")]
         public string Author { get; set; }
         public int? AdminUpdateId { get; set; }
         [DataType(DataType.Date)]

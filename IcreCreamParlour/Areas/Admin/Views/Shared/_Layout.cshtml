@@ -24,11 +24,11 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/assets/images/favicon.png" />
 </head>
-@{
+@*@{
     Admin admin = new Admin();
     if (Context.Session.GetString("AdminId") == null)
     {
-        <script>window.location.href = "/Books";</script>
+        <script>window.location.href = "/Admin/Home";</script>
     }
     else
     {
@@ -37,7 +37,7 @@
         admin = _context.Admins.SingleOrDefault(admin => admin.AdminId == AdminId);
     }
 
-}
+}*@
 <body>
     <div class="main-wrapper">
 

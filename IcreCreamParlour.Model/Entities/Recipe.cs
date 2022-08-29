@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 #nullable disable
 
@@ -11,9 +13,16 @@ namespace IcreCreamParlour.Model.Entities
     public partial class Recipe
     {
         public int RecipeId { get; set; }
+        [Required]
+        [Display(Name = "Recipe Name")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Recipe Name length must be between 3 and 100")]
         public string RecipeName { get; set; }
         public string Image { get; set; }
+        [Required]
+        [Display(Name = "Ingredients")]
         public string Ingredients { get; set; }
+        [Required]
+        [Display(Name = "MakingProcess")]
         public string MakingProcess { get; set; }
         public int? AdminCreateId { get; set; }
         public DateTime PublistDate { get; set; }

@@ -124,23 +124,66 @@
                         <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
                     </div>
                 </div>
-                @foreach (var item in ViewData["books"] as IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>)
-                {
+                @*@foreach (var item in ViewData["books"] as IEnumerable<IcreCreamParlour.Model.DTO.BookDTO>)
+                {*@
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded cartdisp">
                         <div class="d-flex flex-row">
-                            <img class="rounded" src="@("~/images/bookimg/"+item.Image)" asp-append-version="true" width="40">
+                            <img class="rounded" src="~/images/flavorimg/banana222355354.jpg"  width="40">
                             <div class="ml-2">
-                                <span class="font-weight-bold d-block">@item.Title</span>
-                                <span class="spec">@item.Price, Navy Blue</span>
+                                <span class="font-weight-bold d-block"></span>
+                                <span class="spec">Banana</span>
                             </div>
                         </div>
                         <div class="d-flex flex-row align-items-center">
                             <span class="d-block">2</span>
-                            <span class="d-block ml-5 font-weight-bold">@item.Price</span>
+                            <span class="d-block ml-5 font-weight-bold"></span>
                             <i class="fa fa-trash-o ml-3 text-black-50"></i>
                         </div>
                     </div>
-                }
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded cartdisp">
+                        <div class="d-flex flex-row">
+                            <img class="rounded" src="~/images/flavorimg/Butterscotch223016954.jpg"  width="40">
+                            <div class="ml-2">
+                                <span class="font-weight-bold d-block"></span>
+                                <span class="spec">ButterScotch</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                            <span class="d-block">2</span>
+                            <span class="d-block ml-5 font-weight-bold"></span>
+                            <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                        </div>
+                    </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded cartdisp">
+                    <div class="d-flex flex-row">
+                        <img class="rounded" src="~/images/flavorimg/cherry222921550.jpg" width="40">
+                        <div class="ml-2">
+                            <span class="font-weight-bold d-block"></span>
+                            <span class="spec">Cherry</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="d-block">2</span>
+                        <span class="d-block ml-5 font-weight-bold"></span>
+                        <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded cartdisp">
+                    <div class="d-flex flex-row">
+                        <img class="rounded" src="~/images/flavorimg/coffee222725391.jpg" width="40">
+                        <div class="ml-2">
+                            <span class="font-weight-bold d-block"></span>
+                            <span class="spec">Coffee</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="d-block">2</span>
+                        <span class="d-block ml-5 font-weight-bold"></span>
+                        <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                    </div>
+                </div>
+                @*}*@
+
                 @*<div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                         <div class="d-flex flex-row">
                             <img class="rounded" src="https://i.imgur.com/GQnIUfs.jpg" width="40">
